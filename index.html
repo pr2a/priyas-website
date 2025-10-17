@@ -91,6 +91,43 @@
             opacity: 0.7;
         }
 
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-toggle {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dropdown-arrow {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-arrow.open {
+            transform: rotate(180deg);
+        }
+
+        .dropdown-content {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 20px;
+            padding-left: 20px;
+        }
+
+        .dropdown-content.show {
+            display: flex;
+        }
+
+        .dropdown-content .link-item {
+            font-size: 1rem;
+        }
+
         /* Responsive design */
         @media (max-width: 768px) {
             .title {
@@ -122,8 +159,22 @@
         <h1 class="title">priya ganguly's corner of the internet</h1>
         
         <div class="links-container">
-            <div class="link-item">
-                <a href="songs.html">current fave songs</a>
+            <div class="link-item dropdown">
+                <div class="dropdown-toggle" onclick="toggleDropdown()">
+                    <span>current fave songs</span>
+                    <span class="dropdown-arrow">▼</span>
+                </div>
+                <div class="dropdown-content" id="songsDropdown">
+                    <div class="link-item">
+                        <a href="https://open.spotify.com/track/example1" target="_blank">song 1</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://open.spotify.com/track/example2" target="_blank">song 2</a>
+                    </div>
+                    <div class="link-item">
+                        <a href="https://open.spotify.com/track/example3" target="_blank">song 3</a>
+                    </div>
+                </div>
             </div>
             <div class="link-item">
                 <a href="https://www.corner.inc/priya?sid=9a741e62-2eaa-4a89-8df9-ab412a396cc1" target="_blank">my corner of the apple maps world</a>
@@ -136,5 +187,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function toggleDropdown() {
+            const dropdown = document.getElementById('songsDropdown');
+            const arrow = document.querySelector('.dropdown-arrow');
+            
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                arrow.classList.remove('open');
+            } else {
+                dropdown.classList.add('show');
+                arrow.classList.add('open');
+            }
+        }
+    </script>
 </body>
 </html>
